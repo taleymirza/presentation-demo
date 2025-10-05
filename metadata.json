@@ -1,0 +1,5 @@
+{
+  "name": "React Presentation Slides",
+  "description": "A simple and elegant presentation slides application built with React and Tailwind CSS, allowing users to navigate through slides using cursor arrows.",
+  "requestFramePermissions": []
+}
