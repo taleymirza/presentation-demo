@@ -4,6 +4,8 @@ import Slide from "./components/Slide";
 import Navigation from "./components/Navigation";
 import SlideIndicator from "./components/SlideIndicator";
 import InteractiveDropdown from "./components/DropdownSearch";
+import SensorsDemo from "./components/SensorsDemo";
+import AutofillDemo from "./components/AutofillDemo";
 
 const SLIDES_DATA: SlideData[] = [
   {
@@ -24,11 +26,11 @@ const SLIDES_DATA: SlideData[] = [
   },
   {
     id: 3,
-    title: "Key Features",
+    title: "Agenda for Today",
     content: (
-      <ul className="list-disc text-left space-y-4 max-w-2xl mx-auto">
+      <ul className="list-decimal text-left space-y-4 max-w-2xl mx-auto">
         <li>
-          <strong>Declarative UI:</strong> Build complex UIs from small,
+          <strong>Declarative UI:</strong> <br/>Build complex UIs from small,
           isolated pieces of code called “components”.
         </li>
         <li>
@@ -42,8 +44,8 @@ const SLIDES_DATA: SlideData[] = [
         </li>
       </ul>
     ),
-    backgroundColor: "bg-teal-800",
-    textColor: "text-teal-100",
+    backgroundColor: "bg-gray-800",
+    textColor: "text-gray-100",
   },
   {
     id: 4,
@@ -56,11 +58,10 @@ const SLIDES_DATA: SlideData[] = [
   },
   {
     id: 5,
-    title: "Styled with Tailwind CSS",
-    content:
-      "All styling is handled directly in the JSX using Tailwind's utility-first classes, making design rapid and responsive.",
-    backgroundColor: "bg-emerald-800",
-    textColor: "text-emerald-100",
+    title: 'DevTools: Autofill Demo',
+    content: <AutofillDemo />,
+    backgroundColor: 'bg-cyan-800',
+    textColor: 'text-cyan-100',
   },
   {
     id: 6,
@@ -88,24 +89,48 @@ const SLIDES_DATA: SlideData[] = [
   },
   {
     id: 8,
-    title: "The End",
-    content: "Explore the code to see how it all works. Thank you for viewing!",
+    title: 'DevTools: Sensors Demo',
+    content: <SensorsDemo />,
+    backgroundColor: 'bg-gray-800',
+    textColor: 'text-gray-100',
+  },
+  {
+    id: 9,
+    title: "Kernighan’s Law",
+    content: (
+      <blockquote class="border-l-4 border-gray-300 pl-8 text-left italic text-gray-300 mt-12">
+        Debugging is twice as hard as writing the code in the first place.
+        Therefore, if you write the code as cleverly as possible, you are, by
+        definition, not smart enough to debug it.
+      </blockquote>
+    ),
     backgroundColor: "bg-gray-800",
     textColor: "text-gray-100",
   },
 ];
 
 const App: React.FC = () => {
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(() => {
+    const savedIndex = localStorage.getItem('currentSlideIndex');
+    if (savedIndex !== null) {
+      const parsedIndex = parseInt(savedIndex, 10);
+      if (!isNaN(parsedIndex) && parsedIndex >= 0 && parsedIndex < SLIDES_DATA.length) {
+        return parsedIndex;
+      }
+    }
+    return 0;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('currentSlideIndex', currentSlideIndex.toString());
+  }, [currentSlideIndex]);
 
   const goToNextSlide = useCallback(() => {
     setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % SLIDES_DATA.length);
   }, []);
 
   const goToPrevSlide = useCallback(() => {
-    setCurrentSlideIndex(
-      (prevIndex) => (prevIndex - 1 + SLIDES_DATA.length) % SLIDES_DATA.length
-    );
+    setCurrentSlideIndex((prevIndex) => (prevIndex - 1 + SLIDES_DATA.length) % SLIDES_DATA.length);
   }, []);
 
   const goToSlide = (index: number) => {
@@ -116,38 +141,35 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowRight") {
+      if (event.key === 'ArrowRight') {
         goToNextSlide();
-      } else if (event.key === "ArrowLeft") {
+      } else if (event.key === 'ArrowLeft') {
         goToPrevSlide();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [goToNextSlide, goToPrevSlide]);
 
   const currentSlide = SLIDES_DATA[currentSlideIndex];
 
   return (
-    <main
-      className={`relative w-screen h-screen overflow-hidden flex items-center justify-center transition-colors duration-700 ${currentSlide.backgroundColor}`}
-    >
+    <main className={`relative w-screen h-screen overflow-hidden flex items-center justify-center transition-colors duration-700 ${currentSlide.backgroundColor}`}>
       <div className="absolute inset-0">
         {SLIDES_DATA.map((slide, index) => (
-          <div
+           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-              index === currentSlideIndex ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            {index === currentSlideIndex && <Slide {...slide} />}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === currentSlideIndex ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            aria-hidden={index !== currentSlideIndex}
+            >
+            <Slide {...slide} />
           </div>
         ))}
       </div>
-
+      
       <Navigation onPrev={goToPrevSlide} onNext={goToNextSlide} />
 
       <SlideIndicator

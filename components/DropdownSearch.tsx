@@ -30,13 +30,7 @@ export default function InteractiveDropdown(): React.Element {
     },
     {
       icon: Clock,
-      text: "most common select html bug",
-      description: null,
-      endIcon: X,
-    },
-    {
-      icon: Clock,
-      text: "should i git commit package lock json",
+      text: "most common select bug",
       description: null,
       endIcon: X,
     },
@@ -48,19 +42,19 @@ export default function InteractiveDropdown(): React.Element {
     },
     {
       icon: Clock,
-      text: "linkedin",
+      text: "how to fix z index",
       description: null,
       endIcon: X,
     },
     {
       icon: Clock,
-      text: "coverage tool",
+      text: "chrome coverage tool",
       description: null,
       endIcon: X,
     },
     {
       icon: Clock,
-      text: "code names",
+      text: "gemini nano banana",
       description: null,
       endIcon: X,
     },
