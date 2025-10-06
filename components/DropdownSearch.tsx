@@ -134,133 +134,103 @@ export default function InteractiveDropdown(): React.Element {
   };
 
   return (
-    // <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
-    //   <div className="max-w-3xl mx-auto">
-    //     <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-    //       Interactive Dropdown Demo
-    //     </h1>
+    <div className="flex flex-col md:flex-row gap-6 items-start w-full mt-4">
+      {/* Left Column: Dropdown */}
+      <div className="w-full md:w-1/2">
+        <div className="relative h-64" ref={dropdownRef}>
+          <div
+            className={`relative bg-white text-left ${
+              isOpen
+                ? "rounded-t-3xl rounded-b-3xl shadow-lg"
+                : "rounded-full shadow-sm hover:shadow-md"
+            } border border-gray-300 transition-shadow`}
+          >
+            <div className="relative">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20">
+                <Search className="w-5 h-5 text-gray-400" />
+              </div>
+              <input
+                ref={inputRef}
+                type="text"
+                value={inputValue}
+                onChange={handleInputChange}
+                onFocus={() => setIsOpen(true)}
+                onKeyDown={handleKeyDown}
+                placeholder="Search..."
+                className="w-full pl-12 pr-4 py-4 text-lg text-gray-800 bg-transparent focus:outline-none relative z-20"
+              />
+            </div>
 
-    <div className="relative h-64" ref={dropdownRef}>
-      {/* Combined Container */}
-      <div
-        className={`relative bg-white text-left ${
-          isOpen
-            ? "rounded-t-3xl rounded-b-3xl shadow-lg"
-            : "rounded-full shadow-sm hover:shadow-md"
-        } border border-gray-300 transition-shadow`}
-      >
-        {/* Search Input */}
-        <div className="relative">
-          <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20">
-            <Search className="w-5 h-5 text-gray-400" />
-          </div>
-          <input
-            ref={inputRef}
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            onFocus={() => setIsOpen(true)}
-            onKeyDown={handleKeyDown}
-            placeholder="Search..."
-            className="w-full pl-12 pr-4 py-4 text-lg text-gray-800 bg-transparent focus:outline-none relative z-20"
-          />
-        </div>
+            {isOpen && filteredOptions.length > 0 && (
+              <div className="border-t border-gray-200">
+                {filteredOptions.map((option, index) => {
+                  const IconComponent = option.icon;
+                  const EndIconComponent = option.endIcon;
+                  const isSelected = index === selectedIndex;
+                  const isLast = index === filteredOptions.length - 1;
 
-        {/* Dropdown Menu */}
-        {isOpen && filteredOptions.length > 0 && (
-          <div className="border-t border-gray-200">
-            {filteredOptions.map((option, index) => {
-              const IconComponent = option.icon;
-              const EndIconComponent = option.endIcon;
-              const isSelected = index === selectedIndex;
-              const isLast = index === filteredOptions.length - 1;
-
-              return (
-                <div
-                  key={index}
-                  onClick={() => handleOptionClick(option)}
-                  className={`group flex items-center px-4 py-3 cursor-pointer transition-colors ${
-                    isSelected ? "bg-gray-100" : "hover:bg-gray-50"
-                  }  ${isLast ? "rounded-b-3xl" : ""}`}
-                >
-                  <IconComponent className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                  <div className="flex-1 ml-4 min-w-0">
-                    <div className="text-gray-800 leading-tight">
-                      {option.text}
-                    </div>
-                    {option.description && (
-                      <div className="text-xs text-gray-500 leading-tight">
-                        {option.description}
+                  return (
+                    <div
+                      key={index}
+                      onClick={() => handleOptionClick(option)}
+                      className={`group flex items-center px-4 py-3 cursor-pointer transition-colors ${
+                        isSelected ? "bg-gray-100" : "hover:bg-gray-50"
+                      }  ${isLast ? "rounded-b-3xl" : ""}`}
+                    >
+                      <IconComponent className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                      <div className="flex-1 ml-4 min-w-0">
+                        <div className="text-gray-800 leading-tight">
+                          {option.text}
+                        </div>
+                        {option.description && (
+                          <div className="text-xs text-gray-500 leading-tight">
+                            {option.description}
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                  <button
-                    onClick={(e) => handleRemoveClick(e, option)}
-                    className="ml-4 p-1 hover:bg-gray-200 rounded-full transition-colors opacity-0 group-hover:opacity-100 group-focus-within:opacity-100"
-                  >
-                    <EndIconComponent className="w-4 h-4 text-gray-400" />
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        )}
+                      <button
+                        onClick={(e) => handleRemoveClick(e, option)}
+                        className="ml-4 p-1 hover:bg-gray-200 rounded-full transition-colors opacity-0 group-hover:opacity-100 group-focus-within:opacity-100"
+                        aria-label={`Remove ${option.text}`}
+                      >
+                        <EndIconComponent className="w-4 h-4 text-gray-400" />
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
 
-        {isOpen && filteredOptions.length === 0 && inputValue && (
-          <div className="border-t border-gray-200 p-4">
-            <p className="text-gray-500 text-center">No results found</p>
+            {isOpen && filteredOptions.length === 0 && inputValue && (
+              <div className="border-t border-gray-200 p-4">
+                <p className="text-gray-500 text-center">No results found</p>
+              </div>
+            )}
           </div>
-        )}
+        </div>
+      </div>
+      
+      {/* Right Column: Instructions */}
+      <div className="w-full md:w-1/2 text-left bg-black/30 p-4 rounded-lg">
+        <h4 className="font-bold text-base mb-2">How to Debug Hover States:</h4>
+        <ol className="list-decimal list-inside space-y-2 text-sm text-grey-100/90">
+          <li>
+            <strong>Right-click</strong> an item in the dropdown (like "debug a select") and choose <strong>"Inspect"</strong>.
+          </li>
+          <li>
+            In the DevTools Elements panel, that `div` will be highlighted.
+          </li>
+          <li>
+            In the <strong>Styles panel</strong> on the right, click the <strong>:hov</strong> button (stands for "hover").
+          </li>
+          <li>
+            Check the <strong>:hover</strong> checkbox in the menu that appears.
+          </li>
+          <li>
+            The item's hover state is now "stuck" on. You can inspect and edit the hover styles directly! This works for `:focus` and other states too.
+          </li>
+        </ol>
       </div>
     </div>
-
-    // {/* Instructions */}
-    //     <div className="mt-8 bg-white rounded-2xl p-6 shadow-lg">
-    //       <h2 className="text-xl font-semibold text-gray-800 mb-4">
-    //         Debugging Features:
-    //       </h2>
-    //       <ul className="space-y-2 text-gray-600">
-    //         <li className="flex items-start">
-    //           <span className="font-mono bg-blue-100 text-blue-700 px-2 py-1 rounded text-sm mr-2">
-    //             Click
-    //           </span>
-    //           <span>input field to open dropdown</span>
-    //         </li>
-    //         <li className="flex items-start">
-    //           <span className="font-mono bg-blue-100 text-blue-700 px-2 py-1 rounded text-sm mr-2">
-    //             Type
-    //           </span>
-    //           <span>to filter options</span>
-    //         </li>
-    //         <li className="flex items-start">
-    //           <span className="font-mono bg-blue-100 text-blue-700 px-2 py-1 rounded text-sm mr-2">
-    //             ↑↓
-    //           </span>
-    //           <span>arrow keys to navigate</span>
-    //         </li>
-    //         <li className="flex items-start">
-    //           <span className="font-mono bg-blue-100 text-blue-700 px-2 py-1 rounded text-sm mr-2">
-    //             Enter
-    //           </span>
-    //           <span>to select highlighted option</span>
-    //         </li>
-    //         <li className="flex items-start">
-    //           <span className="font-mono bg-blue-100 text-blue-700 px-2 py-1 rounded text-sm mr-2">
-    //             Esc
-    //           </span>
-    //           <span>to close dropdown</span>
-    //         </li>
-    //         <li className="flex items-start">
-    //           <span className="font-mono bg-blue-100 text-blue-700 px-2 py-1 rounded text-sm mr-2">
-    //             X
-    //           </span>
-    //           <span>
-    //             icon appears on hover - click to remove item from list
-    //           </span>
-    //         </li>
-    //       </ul>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
