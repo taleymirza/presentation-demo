@@ -23,10 +23,6 @@ const localOverridesItems = [
     With overrides, your changes <strong>persist across page loads</strong>,
     allowing for rapid iteration and debugging without leaving the browser.
   </>,
-  <>
-    <strong>Setup:</strong> In DevTools, go to the "Sources" tab, then the
-    "Overrides" sub-tab, and select a local folder to save your changes to.
-  </>,
 ];
 const cssOverviewItems = [
   <>
@@ -49,57 +45,9 @@ const cssOverviewItems = [
 
 const SLIDES_DATA: SlideData[] = [
   {
-    id: 1,
-    title: "Welcome to React Slides",
-    content:
-      "A modern presentation experience built with React and Tailwind CSS. Use the arrow keys or click the on-screen cursors to navigate.",
-    backgroundColor: "bg-slate-900",
-    textColor: "text-slate-100",
-  },
-  {
-    id: 2,
-    title: "Component-Based Architecture",
-    content:
-      "Each slide, navigation control, and indicator is a reusable React component, promoting clean code and maintainability.",
-    backgroundColor: "bg-gray-800",
-    textColor: "text-gray-100",
-  },
-  {
-    id: 3,
-    title: "Agenda for Today",
-    content: (
-      <ul className="list-decimal text-left space-y-4 max-w-2xl mx-auto">
-        <li>
-          <strong>Declarative UI:</strong> <br />
-          Build complex UIs from small, isolated pieces of code called
-          “components”.
-        </li>
-        <li>
-          <strong>Virtual DOM:</strong> React creates an in-memory data
-          structure cache, computes the resulting differences, and then updates
-          the browser's displayed DOM efficiently.
-        </li>
-        <li>
-          <strong>JSX:</strong> A syntax extension to JavaScript that lets you
-          write HTML-like markup inside a JavaScript file.
-        </li>
-      </ul>
-    ),
-    backgroundColor: "bg-gray-800",
-    textColor: "text-gray-100",
-  },
-  {
-    id: 4,
-    title: "What Are Local Overrides?",
-    content: localOverridesItems,
-    backgroundColor: "bg-gray-800",
-    textColor: "text-gray-100",
-    isRevealList: true,
-  },
-  {
-    id: 5,
-    title: "Challenge: Network Response Override",
-    content: <NetworkOverrideDemo />,
+    id: 10,
+    title: "DevTools: Sensors Demo",
+    content: <SensorsDemo />,
     backgroundColor: "bg-gray-800",
     textColor: "text-gray-100",
   },
@@ -115,6 +63,21 @@ const SLIDES_DATA: SlideData[] = [
     id: 7,
     title: "Challenge: Design System Audit",
     content: <CssOverviewDemo />,
+    backgroundColor: "bg-gray-800",
+    textColor: "text-gray-100",
+  },
+  {
+    id: 4,
+    title: "What Are Local Overrides?",
+    content: localOverridesItems,
+    backgroundColor: "bg-gray-800",
+    textColor: "text-gray-100",
+    isRevealList: true,
+  },
+  {
+    id: 5,
+    title: "Challenge: Network Response Override",
+    content: <NetworkOverrideDemo />,
     backgroundColor: "bg-gray-800",
     textColor: "text-gray-100",
   },
@@ -135,13 +98,6 @@ const SLIDES_DATA: SlideData[] = [
     textColor: "text-gray-100",
   },
   {
-    id: 10,
-    title: "DevTools: Sensors Demo",
-    content: <SensorsDemo />,
-    backgroundColor: "bg-gray-800",
-    textColor: "text-gray-100",
-  },
-  {
     id: 11,
     title: "Kernighan’s Law",
     content: (
@@ -154,32 +110,6 @@ const SLIDES_DATA: SlideData[] = [
     backgroundColor: "bg-gray-800",
     textColor: "text-gray-100",
   },
-//     {
-//     id: 12,
-//     title: "A Simple Component",
-//     content: (
-//       <div className="text-left bg-gray-900 rounded-lg p-6 font-mono text-base overflow-x-auto shadow-lg max-w-2xl mx-auto">
-//         <pre>
-//           <code className="language-jsx text-green-300">
-//             {`function Welcome(props) {
-//   return <h1>Hello, {props.name}</h1>;
-// }`}
-//           </code>
-//         </pre>
-//       </div>
-//     ),
-//     backgroundColor: "bg-gray-200",
-//     textColor: "text-gray-800",
-//   },
-//     {
-//     id: 13,
-//     title: "Dynamic Content",
-//     content:
-//       "Slides can feature different layouts, backgrounds, and even images, like the one below.",
-//     backgroundColor: "bg-indigo-100",
-//     textColor: "text-indigo-900",
-//     imageUrl: "https://picsum.photos/800/400",
-//   },
 ];
 
 const App: React.FC = () => {
