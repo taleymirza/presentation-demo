@@ -49,10 +49,10 @@ const NetworkOverrideDemo: React.FC = () => {
   return (
     <div className="max-w-5xl w-full mx-auto bg-slate-800/50 p-4 sm:p-6 rounded-xl shadow-2xl border border-slate-700 text-sm">
       <div className="flex items-start gap-4 mb-6">
-        <HardDriveDownload className="text-amber-300 mt-1 flex-shrink-0" size={24} />
+        <HardDriveDownload className="text-blue-400 mt-1 flex-shrink-0" size={24} />
         <div>
-          <h3 className="font-semibold text-base sm:text-lg text-amber-300">Challenge: Override a Live API Request</h3>
-          <p className="text-slate-300 mt-2 text-sm sm:text-base">
+          <h3 className="font-semibold text-sm text-blue-400">Override a Live API Request</h3>
+          <p className="text-gray-300 mt-2 text-sm sm:text-base">
             This component fetches product data from a real API. Your task is to use your browser's DevTools to intercept and modify the response to build a "Sale" feature.
           </p>
         </div>

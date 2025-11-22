@@ -134,9 +134,8 @@ export default function InteractiveDropdown(): React.Element {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 items-start w-full mt-4">
-      {/* Left Column: Dropdown */}
-      <div className="w-full md:w-1/2">
+    <div className="flex items-center justify-center w-full mt-4">
+      <div className="w-full max-w-md">
         <div className="relative h-64" ref={dropdownRef}>
           <div
             className={`relative bg-white text-left ${
@@ -208,28 +207,6 @@ export default function InteractiveDropdown(): React.Element {
             )}
           </div>
         </div>
-      </div>
-      
-      {/* Right Column: Instructions */}
-      <div className="w-full md:w-1/2 text-left bg-black/30 p-4 rounded-lg">
-        <h4 className="font-bold text-base mb-2">How to Debug Hover States:</h4>
-        <ol className="list-decimal list-inside space-y-2 text-sm text-grey-100/90">
-          <li>
-            <strong>Right-click</strong> an item in the dropdown (like "debug a select") and choose <strong>"Inspect"</strong>.
-          </li>
-          <li>
-            In the DevTools Elements panel, that `div` will be highlighted.
-          </li>
-          <li>
-            In the <strong>Styles panel</strong> on the right, click the <strong>:hov</strong> button (stands for "hover").
-          </li>
-          <li>
-            Check the <strong>:hover</strong> checkbox in the menu that appears.
-          </li>
-          <li>
-            The item's hover state is now "stuck" on. You can inspect and edit the hover styles directly! This works for `:focus` and other states too.
-          </li>
-        </ol>
       </div>
     </div>
   );

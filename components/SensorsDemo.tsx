@@ -76,8 +76,8 @@ const SensorsDemo: React.FC = () => {
       </p>
       
       <div className="bg-white/10 p-4 rounded-lg mb-6 inline-block text-left text-sm">
-        <p><span className="font-semibold text-white/70">Detected Locale: </span>{locale}</p>
-        <p><span className="font-semibold text-white/70">Detected Timezone: </span>{Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
+        <p><span className="font-semibold text-gray-400">Detected Locale: </span>{locale}</p>
+        <p><span className="font-semibold text-gray-400">Detected Timezone: </span>{Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
       </div>
 
       <div className="bg-black/20 p-6 sm:p-8 rounded-xl shadow-inner min-h-[100px] text-left space-y-4">
@@ -85,8 +85,8 @@ const SensorsDemo: React.FC = () => {
           "{text}"
         </p>
         <div className="border-t border-white/20 pt-4">
-            <p><span className="font-semibold text-white/70">Date:</span> {formattedDate}</p>
-            <p><span className="font-semibold text-white/70">Time:</span> {formattedTime}</p>
+            <p><span className="font-semibold text-gray-400">Date:</span> {formattedDate}</p>
+            <p><span className="font-semibold text-gray-400">Time:</span> {formattedTime}</p>
         </div>
       </div>
     </div>
