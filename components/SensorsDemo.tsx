@@ -70,8 +70,8 @@ const SensorsDemo: React.FC = () => {
   }).format(currentTime);
 
   return (
-    <div className="text-center max-w-3xl mx-auto">
-      <p className="mb-6">
+    <div className="text-center max-w-3xl mx-auto p-4">
+      <p className="mb-6 text-base sm:text-lg">
         This demo reads your browser's current settings. Use DevTools to simulate a different location and see the values update in real-time.
       </p>
       
@@ -80,24 +80,14 @@ const SensorsDemo: React.FC = () => {
         <p><span className="font-semibold text-white/70">Detected Timezone: </span>{Intl.DateTimeFormat().resolvedOptions().timeZone}</p>
       </div>
 
-      <div className="bg-black/20 p-8 rounded-xl shadow-inner min-h-[100px] text-left space-y-4">
-        <p className="text-xl font-medium italic">
+      <div className="bg-black/20 p-6 sm:p-8 rounded-xl shadow-inner min-h-[100px] text-left space-y-4">
+        <p className="text-lg sm:text-xl font-medium italic">
           "{text}"
         </p>
         <div className="border-t border-white/20 pt-4">
             <p><span className="font-semibold text-white/70">Date:</span> {formattedDate}</p>
             <p><span className="font-semibold text-white/70">Time:</span> {formattedTime}</p>
         </div>
-      </div>
-      <div className="mt-6 text-left bg-black/30 p-4 rounded-lg text-sm max-w-lg mx-auto">
-        <h4 className="font-bold text-base mb-2">How to use DevTools Sensors:</h4>
-        <ol className="list-decimal list-inside space-y-1">
-            <li>Open Developer Tools (F12 or Ctrl+Shift+I).</li>
-            <li>Press Ctrl+Shift+P to open the Command Menu.</li>
-            <li>Type "Sensors" and select "Show Sensors".</li>
-            <li>Under "Location", select a city like "London" or "Shanghai".</li>
-            <li>The information above will update automatically!</li>
-        </ol>
       </div>
     </div>
   );

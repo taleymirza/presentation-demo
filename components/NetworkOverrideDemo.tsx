@@ -51,45 +51,28 @@ const NetworkOverrideDemo: React.FC = () => {
       <div className="flex items-start gap-4 mb-6">
         <HardDriveDownload className="text-amber-300 mt-1 flex-shrink-0" size={24} />
         <div>
-          <h3 className="font-semibold text-lg text-amber-300">Challenge: Override a Live API Request</h3>
-          <p className="text-slate-300 mt-2">
+          <h3 className="font-semibold text-base sm:text-lg text-amber-300">Challenge: Override a Live API Request</h3>
+          <p className="text-slate-300 mt-2 text-sm sm:text-base">
             This component fetches product data from a real API. Your task is to use your browser's DevTools to intercept and modify the response to build a "Sale" feature.
           </p>
         </div>
       </div>
       
-      <div className="grid md:grid-cols-2 gap-6 items-start">
-        {/* Left side: The Live Component */}
-        <div className="bg-gray-100 rounded-lg p-8 flex flex-col items-center justify-center min-h-[350px] shadow-inner">
-          {loading && (
-            <div className="flex flex-col items-center text-gray-500">
-              <Loader className="animate-spin mb-4" size={32} />
-              <p>Fetching product data...</p>
-            </div>
-          )}
-          {error && (
-            <div className="flex flex-col items-center text-red-600 text-center">
-              <AlertTriangle className="mb-4" size={32} />
-              <p className="font-bold">Error</p>
-              <p>{error}</p>
-            </div>
-          )}
-          {product && <ProductCard product={product} />}
-        </div>
-        
-        {/* Right side: Instructions */}
-        <div className="text-slate-300 space-y-3 text-left">
-          <h4 className="font-bold text-base text-slate-100 mb-2">How to Complete the Challenge:</h4>
-          <ol className="list-decimal list-inside space-y-3 text-xs sm:text-sm">
-            <li>Open DevTools (F12).</li>
-            <li>In the Sources tab, enable Local Overrides and select a folder.</li>
-            <li>Go to the Network tab and refresh this page.</li>
-            <li>Find the `products/1` request, right-click it, and select "Override content".</li>
-            <li>In the JSON response, add the key-value pair: <br /> <code className="bg-slate-700 text-cyan-300 px-2 py-1 rounded text-xs">"discountPrice": 99.99</code></li>
-            <li>Save your changes (Ctrl+S). An active override will be indicated.</li>
-            <li>Refresh the page to see the "SALE!" banner appear.</li>
-          </ol>
-        </div>
+      <div className="bg-gray-100 rounded-lg p-6 sm:p-8 flex flex-col items-center justify-center min-h-[350px] shadow-inner">
+        {loading && (
+          <div className="flex flex-col items-center text-gray-500">
+            <Loader className="animate-spin mb-4" size={32} />
+            <p>Fetching product data...</p>
+          </div>
+        )}
+        {error && (
+          <div className="flex flex-col items-center text-red-600 text-center">
+            <AlertTriangle className="mb-4" size={32} />
+            <p className="font-bold">Error</p>
+            <p className="text-sm">{error}</p>
+          </div>
+        )}
+        {product && <ProductCard product={product} />}
       </div>
     </div>
   );

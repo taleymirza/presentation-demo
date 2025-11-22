@@ -3,9 +3,9 @@ import type { ReactNode } from 'react';
 export interface SlideData {
   id: number;
   title: string;
-  content: string | ReactNode | ReactNode[];
+  content: React.ReactNode | React.ReactNode[];
+  instructions?: string;
   backgroundColor: string;
   textColor: string;
-  imageUrl?: string;
   isRevealList?: boolean;
 }

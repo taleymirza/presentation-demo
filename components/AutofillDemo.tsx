@@ -21,49 +21,33 @@ const AutofillDemo: React.FC = () => {
   );
 
   return (
-    <div className="text-center max-w-3xl mx-auto">
-      <p className="mb-4 text-base">
+    <div className="text-center max-w-3xl mx-auto p-4">
+      <p className="mb-4 text-sm sm:text-base">
         This form is designed to test browser autofill. Use DevTools to create a profile and fill the form instantly.
       </p>
       
-      <div className="flex flex-col md:flex-row gap-4">
-        {/* Form Section */}
-        <div className="md:w-1/2 bg-black/20 p-4 rounded-xl shadow-inner text-left">
-          <form onSubmit={handleSubmit} className="space-y-3">
-            <h3 className="text-base font-semibold text-white border-b border-cyan-400/30 pb-1 mb-2">User Information</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <InputField label="First Name" id="fname" autocomplete="given-name" />
-              <InputField label="Last Name" id="lname" autocomplete="family-name" />
-            </div>
-            <InputField label="Email Address" id="email" autocomplete="email" type="email" />
+      <div className="bg-black/20 p-4 sm:p-6 rounded-xl shadow-inner text-left max-w-lg mx-auto">
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <h3 className="text-base font-semibold text-white border-b border-cyan-400/30 pb-1 mb-2">User Information</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <InputField label="First Name" id="fname" autocomplete="given-name" />
+            <InputField label="Last Name" id="lname" autocomplete="family-name" />
+          </div>
+          <InputField label="Email Address" id="email" autocomplete="email" type="email" />
 
-            <h3 className="text-base font-semibold text-white border-b border-cyan-400/30 pb-1 mb-2 pt-2">Shipping Address</h3>
-            <InputField label="Street Address" id="address" autocomplete="street-address" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <InputField label="City" id="city" autocomplete="address-level2" />
-              <InputField label="Postal Code" id="zip" autocomplete="postal-code" />
-            </div>
-            
-            <div className="pt-2">
-              <button type="submit" className="w-full bg-cyan-500 hover:bg-cyan-400 text-cyan-950 font-bold py-2 px-4 rounded-md transition-colors text-sm">
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-
-        {/* Instructions Section */}
-        <div className="md:w-1/2 text-left bg-black/30 p-4 rounded-lg">
-          <h4 className="font-bold text-base mb-2">How to use DevTools Autofill:</h4>
-          <ol className="list-decimal list-inside space-y-1 text-cyan-100/90 text-sm">
-            <li>Open Chrome Settings.</li>
-            <li>Go to "Autofill and passwords" {'>'} "Addresses...".</li>
-            <li>Click "Add" to create a test profile and save it.</li>
-            <li>Return here and click inside any form field.</li>
-            <li>Select your new profile from the popup.</li>
-            <li>The form will be filled out instantly!</li>
-          </ol>
-        </div>
+          <h3 className="text-base font-semibold text-white border-b border-cyan-400/30 pb-1 mb-2 pt-2">Shipping Address</h3>
+          <InputField label="Street Address" id="address" autocomplete="street-address" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <InputField label="City" id="city" autocomplete="address-level2" />
+            <InputField label="Postal Code" id="zip" autocomplete="postal-code" />
+          </div>
+          
+          <div className="pt-2">
+            <button type="submit" className="w-full bg-cyan-500 hover:bg-cyan-400 text-cyan-950 font-bold py-2 px-4 rounded-md transition-colors text-sm">
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
